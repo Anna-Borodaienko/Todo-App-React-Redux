@@ -59,10 +59,7 @@ export const ClearButton = styled.button`
   cursor: pointer;
   background: none;
 
-  -webkit-appearance: none;
   appearance: none;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 
   &:hover {
     text-decoration: underline;

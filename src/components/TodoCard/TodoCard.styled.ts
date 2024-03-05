@@ -64,9 +64,10 @@ export const StyledInput = styled.input`
   transition: color 0.4s;
 `
 
-export const StyledTitle = styled.div<StyledTitleProps>`
+export const StyledTitle = styled.span<StyledTitleProps>`
   padding: 12px 15px;
-  
+  flex: 1;
+
   word-break: break-all;
   transition: color 0.4s;
   color: ${props => props.completed ? '#d9d9d9' : 'inherit'}  ;
@@ -95,7 +96,5 @@ export const StyledButton = styled.button`
 
 export const Container = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   gap: 5px;
 `
