@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react"
-import { Todo } from "../../types/Todo"
+import React, { useEffect, useRef, useState } from "react";
+import { Todo } from "../../types/Todo";
 import {
   StyledStatus,
   StyledLabel,
@@ -8,57 +8,61 @@ import {
   StyledTitle,
   StyledButton,
   Container,
-} from "./TodoCard.styled"
-import { useInput } from "../hooks/useInput"
-import { useDispatch } from "react-redux"
-import { editTodo, removeTodo, toggleTodo } from "../../store/todoSlice"
+} from "./TodoCard.styled";
+import { useInput } from "../../hooks/useInput";
+import { useDispatch } from "react-redux";
+import { editTodo, removeTodo, toggleTodo } from "../../store/todoSlice";
 
 interface TodoCardProps {
-  todo: Todo
+  todo: Todo;
 }
 
 const TodoCard: React.FC<TodoCardProps> = ({ todo }: TodoCardProps) => {
-  const editTodoField = useRef<HTMLInputElement>(null)
-  const [isEditing, setIsEditing] = useState(false)
+  const editTodoField = useRef<HTMLInputElement>(null);
+  const [isEditing, setIsEditing] = useState(false);
 
-  const { value, onChange } = useInput(todo.title)
+  const { value, onChange } = useInput(todo.title);
 
-  const { id, title, completed } = todo
+  const { id, title, completed } = todo;
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
     // focus the element with `ref={newTodoField}`
     if (editTodoField.current) {
-      editTodoField.current.focus()
+      editTodoField.current.focus();
     }
-  }, [isEditing])
+  }, [isEditing]);
 
   const handleEditing = (input: boolean): void => {
-    setIsEditing(input)
-  }
+    setIsEditing(input);
+  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
-    event.preventDefault()
-    handleEditing(true)
+    event.preventDefault();
+    handleEditing(true);
     if (value !== title && value !== "") {
-      dispatch(editTodo({id, title: value}))
-      handleEditing(false)
+      dispatch(editTodo({ id, title: value }));
+      handleEditing(false);
     } else if (value !== title && value === "") {
-      dispatch(removeTodo({id}))
+      dispatch(removeTodo({ id }));
       handleEditing(false);
     } else {
       handleEditing(false);
     }
-  }
+  };
 
   return (
     <Wrapper data-cy="Todo">
       <StyledLabel completed={completed}>
-        <StyledStatus data-cy="TodoStatus" type="checkbox" onClick={() => dispatch(toggleTodo({id}))} />
+        <StyledStatus
+          data-cy="TodoStatus"
+          type="checkbox"
+          onClick={() => dispatch(toggleTodo({ id }))}
+        />
       </StyledLabel>
 
-      {isEditing ? 
+      {isEditing ? (
         <form onSubmit={handleSubmit} onBlur={handleSubmit}>
           <StyledInput
             data-cy="NewTodoField"
@@ -69,12 +73,12 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }: TodoCardProps) => {
             onChange={onChange}
             onKeyDown={(event): void => {
               if (event.key === "Escape") {
-                setIsEditing(false)
+                setIsEditing(false);
               }
             }}
           />
         </form>
-        : 
+      ) : (
         <Container>
           <StyledTitle
             data-cy="TodoTitle"
@@ -82,13 +86,17 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }: TodoCardProps) => {
           >
             {title}
           </StyledTitle>
-          <StyledButton type="button" data-cy="TodoDeleteButton" onClick={() => dispatch(removeTodo({id}))}>
-              ×
+          <StyledButton
+            type="button"
+            data-cy="TodoDeleteButton"
+            onClick={() => dispatch(removeTodo({ id }))}
+          >
+            ×
           </StyledButton>
         </Container>
-      }
+      )}
     </Wrapper>
-  )
-}
+  );
+};
 
-export default TodoCard
+export default TodoCard;
