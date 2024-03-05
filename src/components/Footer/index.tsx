@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ClearButton, FooterWrapper, StyledLink, StyledNav } from "./Footer.styled";
 import { changeFilter, removeCompletedTodos } from "../../store/todoSlice";
 
-interface FooterProps {
-  activeTodosNumber: number,
-}
 
-const Footer: React.FC<FooterProps> = ({
-  activeTodosNumber,
-}: FooterProps): JSX.Element => {
+const Footer: React.FC = (): JSX.Element => {
   const { todos, fieldForFilter } = useSelector(
     (state: any) => state.todos
   );
   const dispatch = useDispatch();
+
+  const activeTodosNumber = useMemo(() => {
+    const completedTodos = todos.filter((todo: any) => todo.completed);
+
+    return todos.length - completedTodos.length;
+  }, [todos]);
 
   return (
     <FooterWrapper data-cy="Footer">

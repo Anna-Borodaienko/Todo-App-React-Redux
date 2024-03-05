@@ -25,11 +25,7 @@ const App: React.FC = (): JSX.Element => {
     });
   }, [todos, fieldForFilter]);
 
-  const activeTodosNumber = useMemo(() => {
-    const completedTodos = todos.filter((todo: any) => todo.completed);
-
-    return todos.length - completedTodos.length;
-  }, [todos]);
+  
 
   return (
     <AppWrapper>
@@ -40,7 +36,7 @@ const App: React.FC = (): JSX.Element => {
           <AddTodoInput />
         </Header>
         <TodoList filteredTodos={filteredTodos} />
-        <Footer activeTodosNumber={activeTodosNumber} />
+        <Footer />
       </Container>
     </AppWrapper>
   );
