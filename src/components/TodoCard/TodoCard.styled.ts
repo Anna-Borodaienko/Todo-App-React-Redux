@@ -68,8 +68,8 @@ export const StyledTitle = styled.span<StyledTitleProps>`
 
   word-break: break-all;
   transition: color 0.4s;
-  color: ${(props) => (props.completed ? '#d9d9d9' : 'inherit')};
-  text-decoration: ${(props) => (props.completed ? 'line-through' : 'none')};
+  color: ${(props): string => props.completed ? '#d9d9d9' : 'inherit'};
+  text-decoration: ${(props): string => props.completed ? 'line-through' : 'none'};
 `
 
 export const StyledButton = styled.button`

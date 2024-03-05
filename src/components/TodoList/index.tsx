@@ -12,9 +12,9 @@ const TodoList: React.FC<TodoListProps> = ({
 }: TodoListProps): JSX.Element => {
   return (
     <Wrapper>
-      {filteredTodos.map((todo) => (
+      {filteredTodos.map((todo) => 
         <TodoCard key={todo.id} todo={todo} />
-      ))}
+      )}
     </Wrapper>
   )
 }

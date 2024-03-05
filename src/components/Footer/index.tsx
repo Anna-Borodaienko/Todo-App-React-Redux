@@ -53,7 +53,7 @@ const Footer: React.FC = (): JSX.Element => {
         </StyledLink>
       </StyledNav>
 
-      {todos.length > 0 && (
+      {todos.length > 0 && 
         <ClearButton
           data-cy='ClearCompletedButton'
           type='button'
@@ -62,7 +62,7 @@ const Footer: React.FC = (): JSX.Element => {
         >
           Clear completed
         </ClearButton>
-      )}
+      }
     </FooterWrapper>
   )
 }

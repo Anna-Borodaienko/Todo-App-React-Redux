@@ -2,18 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { TodoState } from './todosState'
 
 const initialState: TodoState = {
-  todos: [
-    {
-      id: '123',
-      title: '456',
-      completed: false,
-    },
-    {
-      id: '1232',
-      title: '4562',
-      completed: true,
-    },
-  ],
+  todos: [],
   fieldForFilter: 'All',
 }
 
@@ -40,9 +29,9 @@ const todoSlice = createSlice({
     toggleAllTodos(state) {
       const hasActiveTodo = state.todos.some((todo) => todo.completed === false)
       if (hasActiveTodo) {
-        state.todos.forEach((todo) => (todo.completed = true))
+        state.todos.forEach((todo) => todo.completed = true)
       } else {
-        state.todos.forEach((todo) => (todo.completed = false))
+        state.todos.forEach((todo) => todo.completed = false)
       }
     },
     editTodo(state, action) {

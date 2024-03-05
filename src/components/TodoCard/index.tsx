@@ -62,7 +62,7 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }: TodoCardProps) => {
         />
       </StyledLabel>
 
-      {isEditing ? (
+      {isEditing ? 
         <form onSubmit={handleSubmit} onBlur={handleSubmit}>
           <StyledInput
             data-cy='NewTodoField'
@@ -78,7 +78,7 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }: TodoCardProps) => {
             }}
           />
         </form>
-      ) : (
+        : 
         <Container>
           <StyledTitle
             completed={completed}
@@ -95,7 +95,7 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }: TodoCardProps) => {
             ×
           </StyledButton>
         </Container>
-      )}
+      }
     </Wrapper>
   )
 }

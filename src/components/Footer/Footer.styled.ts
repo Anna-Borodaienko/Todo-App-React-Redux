@@ -39,7 +39,7 @@ export const StyledLink = styled.a<StyledLinkProps>`
   text-decoration: none;
 
   border: 1px solid;
-  border-color: ${(props) =>
+  border-color: ${(props): string =>
     props.selected ? 'rgba(175, 47, 47, 0.2)' : 'transparent'};
   border-radius: 3px;
 

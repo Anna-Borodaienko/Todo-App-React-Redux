@@ -11,7 +11,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
   transform: rotate(90deg);
 
   font-size: 24px;
-  color: ${(props) => (props.active ? '#737373' : '#e6e6e6')};
+  color: ${(props): string => props.active ? '#737373' : '#e6e6e6'};
 
   border: 0;
   background-color: transparent;
