@@ -19,5 +19,6 @@ export const Title = styled.h1`
   font-size: 100px;
   font-weight: 100;
   text-align: center;
+  line-height: 1.5;
   color: rgba(175, 47, 47, 0.15);
 `

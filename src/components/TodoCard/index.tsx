@@ -7,10 +7,11 @@ import {
   StyledInput,
   StyledTitle,
   StyledButton,
+  Container,
 } from "./TodoCard.styled"
 import { useInput } from "../hooks/useInput"
 import { useDispatch } from "react-redux"
-import { removeTodo, toggleTodo } from "../../store/todoSlice"
+import { editTodo, removeTodo, toggleTodo } from "../../store/todoSlice"
 
 interface TodoCardProps {
   todo: Todo
@@ -40,10 +41,14 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }: TodoCardProps) => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
     handleEditing(true)
-    if (value !== title) {
+    if (value !== title && value !== "") {
+      dispatch(editTodo({id, title: value}))
       handleEditing(false)
+    } else if (value !== title && value === "") {
+      dispatch(removeTodo({id}))
+      handleEditing(false);
     } else {
-      handleEditing(false)
+      handleEditing(false);
     }
   }
 
@@ -70,7 +75,7 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }: TodoCardProps) => {
           />
         </form>
         : 
-        <>
+        <Container>
           <StyledTitle
             data-cy="TodoTitle"
             onDoubleClick={(): void => setIsEditing(true)}
@@ -80,7 +85,7 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }: TodoCardProps) => {
           <StyledButton type="button" data-cy="TodoDeleteButton" onClick={() => dispatch(removeTodo({id}))}>
               ×
           </StyledButton>
-        </>
+        </Container>
       }
     </Wrapper>
   )

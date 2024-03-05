@@ -60,7 +60,7 @@ export const StyledInput = styled.input`
   transition: color 0.4s;
 `
 
-export const StyledTitle = styled.span`
+export const StyledTitle = styled.div`
   padding: 12px 15px;
   
   word-break: break-all;
@@ -68,10 +68,7 @@ export const StyledTitle = styled.span`
 `
 
 export const StyledButton = styled.button`
-  position: absolute;
-  right: 12px;
-  top: 0;
-  bottom: 0;
+  margin-right: 12px;
 
   font-size: 120%;
   line-height: 1;
@@ -79,15 +76,20 @@ export const StyledButton = styled.button`
   font-weight: inherit;
   color: #cc9a9a;
 
-  float: right;
   border: 0;
   background: none;
   cursor: pointer;
 
-  transform: translateY(-2px);
   transition: color 0.2s ease-out;
 
   &:hover {
     color: #af5b5e;
   }
+`
+
+export const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
 `
