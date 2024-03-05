@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const FormWrapper = styled.form`
+  flex: 1;
+`
+
 export const InputWrapper = styled.input`
   width: 100%;
   padding: 16px 16px 16px 16px;

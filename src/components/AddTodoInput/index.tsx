@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useInput } from "../../hooks/useInput";
 import { useDispatch } from "react-redux";
 import { addTodo } from "../../store/todoSlice";
-import { InputWrapper, StyledError } from "./AddTodoInput.styled";
+import { InputWrapper, StyledError, FormWrapper } from "./AddTodoInput.styled";
 import { todoMaxLength } from "../../constants/Todo";
 
 export const AddTodoInput: React.FC = (): JSX.Element => {
@@ -23,7 +23,7 @@ export const AddTodoInput: React.FC = (): JSX.Element => {
   };
 
   return (
-    <form onSubmit={submitAddingTodo}>
+    <FormWrapper onSubmit={submitAddingTodo}>
       <InputWrapper
         data-cy="NewTodoField"
         type="text"
@@ -34,6 +34,6 @@ export const AddTodoInput: React.FC = (): JSX.Element => {
       {isError && (
         <StyledError>Your Todo is too long</StyledError>
       ) }
-    </form>
+    </FormWrapper>
   );
 };

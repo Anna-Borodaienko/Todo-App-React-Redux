@@ -16,7 +16,10 @@ const Global = createGlobalStyle`
     max-width: 550px;
     margin: 0 auto;
   }
-`
+  *:focus {
+    outline: none;
+  }
+`;
 
 
 const root = ReactDOM.createRoot(

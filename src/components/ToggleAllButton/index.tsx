@@ -9,7 +9,7 @@ const ToggleAllButton: React.FC = (): JSX.Element => {
 
   return (
     <StyledButton
-      active={state.some((todo) => todo.completed === false)}
+      active={state.some((todo: any) => todo.completed === false)}
       data-cy="ToggleAllButton"
       type="button"
       aria-label="Toggle Button"
