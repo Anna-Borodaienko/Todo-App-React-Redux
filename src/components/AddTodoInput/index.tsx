@@ -1,20 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { useInput } from "../../hooks/useInput";
 import { useDispatch } from "react-redux";
 import { addTodo } from "../../store/todoSlice";
-import { InputWrapper } from "./AddTodoInput.styled";
+import { InputWrapper, StyledError } from "./AddTodoInput.styled";
+import { todoMaxLength } from "../../constants/Todo";
 
 export const AddTodoInput: React.FC = (): JSX.Element => {
   const { value, onChange, clearInput } = useInput("");
+  const [isError, setIsError] = useState(false)
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const submitAddingTodo = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    const newTitle = value;
-
-    dispatch(addTodo({title: newTitle}));
-    clearInput();
+    if (value.trim().length <= todoMaxLength) {
+      setIsError(false);
+      dispatch(addTodo({ title: value }));
+      clearInput();
+    } else {
+      setIsError(true);
+    }
   };
 
   return (
@@ -26,6 +31,9 @@ export const AddTodoInput: React.FC = (): JSX.Element => {
         value={value}
         onChange={onChange}
       />
+      {isError && (
+        <StyledError>Your Todo is too long</StyledError>
+      ) }
     </form>
   );
 };

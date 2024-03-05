@@ -9,13 +9,15 @@ const ToggleAllButton: React.FC = (): JSX.Element => {
 
   return (
     <StyledButton
-    active={state.some(todo => todo.completed === false)}
-    data-cy="ToggleAllButton"
-    type="button"
-    aria-label="Toggle Button"
-    onClick={() => dispatch(toggleAllTodos())}
-  />
-  )
+      active={state.some((todo) => todo.completed === false)}
+      data-cy="ToggleAllButton"
+      type="button"
+      aria-label="Toggle Button"
+      onClick={() => dispatch(toggleAllTodos())}
+    >
+      ❯
+    </StyledButton>
+  );
   };
 
   export default ToggleAllButton

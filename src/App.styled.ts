@@ -24,5 +24,8 @@ export const Title = styled.h1`
 `
 
 export const Header = styled.div`
-  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
 `

@@ -2,23 +2,28 @@ import styled from "styled-components";
 
 export const InputWrapper = styled.input`
   width: 100%;
-  padding: 16px 16px 16px 60px;
+  padding: 16px 16px 16px 16px;
 
   font-size: 24px;
   line-height: 1.4em;
   font-family: inherit;
   font-weight: inherit;
   color: inherit;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 
   border: none;
-  background: rgba(0, 0, 0, 0.01);
-  box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
+  background: inherit;
+  box-shadow: inherit;
 
   &::placeholder {
     font-style: italic;
     font-weight: 300;
     color: #e6e6e6;
   }
+`
+
+export const StyledError = styled.div`
+  padding: 20px;
+
+  font-size: 20px;
+  color: #960019;
 `

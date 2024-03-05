@@ -5,14 +5,11 @@ interface StyledButtonProps {
 }
 
 export const StyledButton = styled.button<StyledButtonProps>`
-  position: absolute;
 
   height: 100%;
   width: 45px;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  transform: rotate(90deg);
 
   font-size: 24px;
   color: ${props => props.active ? '#737373' : '#e6e6e6'};
@@ -20,10 +17,4 @@ export const StyledButton = styled.button<StyledButtonProps>`
   border: 0;
   background-color: transparent;
   cursor: pointer;
-
-  &:before {
-    content: "❯";
-    transform: translateY(2px) rotate(90deg);
-    line-height: 0;
-  }
 `
