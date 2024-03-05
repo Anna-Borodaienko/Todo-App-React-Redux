@@ -85,11 +85,9 @@ export const StyledButton = styled.button`
   cursor: pointer;
 
   transform: translateY(-2px);
-  opacity: 0;
   transition: color 0.2s ease-out;
 
   &:hover {
     color: #af5b5e;
-    opacity: 1;
   }
 `

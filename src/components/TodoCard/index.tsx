@@ -9,6 +9,8 @@ import {
   StyledButton,
 } from "./TodoCard.styled"
 import { useInput } from "../hooks/useInput"
+import { useDispatch } from "react-redux"
+import { removeTodo, toggleTodo } from "../../store/todoSlice"
 
 interface TodoCardProps {
   todo: Todo
@@ -20,7 +22,9 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }: TodoCardProps) => {
 
   const { value, onChange } = useInput(todo.title)
 
-  const { title, completed } = todo
+  const { id, title, completed } = todo
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     // focus the element with `ref={newTodoField}`
@@ -46,7 +50,7 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }: TodoCardProps) => {
   return (
     <Wrapper data-cy="Todo">
       <StyledLabel completed={completed}>
-        <StyledStatus data-cy="TodoStatus" type="checkbox" />
+        <StyledStatus data-cy="TodoStatus" type="checkbox" onClick={() => dispatch(toggleTodo({id}))} />
       </StyledLabel>
 
       {isEditing ? 
@@ -73,7 +77,7 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }: TodoCardProps) => {
           >
             {title}
           </StyledTitle>
-          <StyledButton type="button" data-cy="TodoDeleteButton">
+          <StyledButton type="button" data-cy="TodoDeleteButton" onClick={() => dispatch(removeTodo({id}))}>
               ×
           </StyledButton>
         </>
