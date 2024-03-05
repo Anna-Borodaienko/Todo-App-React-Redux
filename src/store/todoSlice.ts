@@ -33,6 +33,14 @@ const todoSlice = createSlice({
       const toggledTodo = state.todos.find(todo => todo.id === action.payload.id)
       if (toggledTodo) toggledTodo.completed = !toggledTodo.completed
     },
+    toggleAllTodos(state){
+      const hasActiveTodo = state.todos.some(todo => todo.completed === false)
+      if (hasActiveTodo) {
+        state.todos.forEach(todo => todo.completed = true)
+      } else {
+        state.todos.forEach(todo => todo.completed = false)
+      }
+    },
     editTodo(state, action){
       const editedTodo = state.todos.find(todo => todo.id === action.payload.id)
       if (editedTodo) editedTodo.title = action.payload.title.trim()
@@ -40,6 +48,6 @@ const todoSlice = createSlice({
   }
 })
 
-export const { addTodo, removeTodo, toggleTodo, editTodo } = todoSlice.actions
+export const { addTodo, removeTodo, toggleTodo, toggleAllTodos, editTodo } = todoSlice.actions
 
 export default todoSlice.reducer

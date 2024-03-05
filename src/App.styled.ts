@@ -8,7 +8,7 @@ export const AppWrapper = styled.div`
   margin: 40px 20px;
 `
 
-export const ListContainer = styled.div`
+export const Container = styled.div`
   margin-bottom: 20px;
   background: #fff;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
@@ -21,4 +21,8 @@ export const Title = styled.h1`
   text-align: center;
   line-height: 1.5;
   color: rgba(175, 47, 47, 0.15);
+`
+
+export const Header = styled.div`
+  position: relative;
 `
