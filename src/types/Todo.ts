@@ -4,8 +4,4 @@ export interface Todo {
   completed: boolean
 }
 
-export enum FieldForSorting {
-  All,
-  Active,
-  Completed,
-}
+export type FieldForFilter = "All" | "Active" | "Completed"

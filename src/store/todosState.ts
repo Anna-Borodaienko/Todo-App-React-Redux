@@ -1,5 +1,6 @@
-import { Todo } from "../types/Todo"
+import { FieldForFilter, Todo } from "../types/Todo"
 
 export interface TodoState {
-  todos: Todo[]
+  todos: Todo[],
+  fieldForFilter: FieldForFilter
 }

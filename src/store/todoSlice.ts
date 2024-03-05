@@ -12,7 +12,8 @@ const initialState: TodoState = {
     title: '4562',
     completed: true
   }
-  ]
+  ],
+  fieldForFilter: 'All'
 }
 
 const todoSlice = createSlice({
@@ -44,10 +45,16 @@ const todoSlice = createSlice({
     editTodo(state, action){
       const editedTodo = state.todos.find(todo => todo.id === action.payload.id)
       if (editedTodo) editedTodo.title = action.payload.title.trim()
+    },
+    removeCompletedTodos(state){
+      state.todos = state.todos.filter(todo => todo.completed !== true)
+    },
+    changeFilter(state, action){
+      state.fieldForFilter = action.payload.fieldForFilter
     }
   }
 })
 
-export const { addTodo, removeTodo, toggleTodo, toggleAllTodos, editTodo } = todoSlice.actions
+export const { addTodo, removeTodo, toggleTodo, toggleAllTodos, editTodo, removeCompletedTodos, changeFilter } = todoSlice.actions
 
 export default todoSlice.reducer
