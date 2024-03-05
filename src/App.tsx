@@ -1,9 +1,15 @@
 import React from 'react'
+import { AppWrapper, Title, ListContainer } from './App.styled'
+import TodoList from './components/TodoList'
 
-function App(): JSX.Element {
+const App: React.FC = (): JSX.Element => {
   return (
-    <div>
-    </div>
+    <AppWrapper>
+      <Title>todos</Title>
+      <ListContainer>
+        <TodoList />
+      </ListContainer>
+    </AppWrapper>
   )
 }
 
