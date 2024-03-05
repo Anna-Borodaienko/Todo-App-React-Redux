@@ -81,6 +81,7 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }: TodoCardProps) => {
       ) : (
         <Container>
           <StyledTitle
+            completed={completed}
             data-cy="TodoTitle"
             onDoubleClick={(): void => setIsEditing(true)}
           >

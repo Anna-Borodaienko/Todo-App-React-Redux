@@ -6,6 +6,10 @@ interface StyledLabelProps {
   completed: boolean
 }
 
+interface StyledTitleProps {
+  completed: boolean
+}
+
 export const Wrapper = styled.div`
   position: relative;
 
@@ -60,11 +64,13 @@ export const StyledInput = styled.input`
   transition: color 0.4s;
 `
 
-export const StyledTitle = styled.div`
+export const StyledTitle = styled.div<StyledTitleProps>`
   padding: 12px 15px;
   
   word-break: break-all;
   transition: color 0.4s;
+  color: ${props => props.completed ? '#d9d9d9' : 'inherit'}  ;
+  text-decoration: ${props => props.completed ? 'line-through' : 'none'} ;
 `
 
 export const StyledButton = styled.button`
