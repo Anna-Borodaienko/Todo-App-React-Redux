@@ -1,60 +1,73 @@
-import {createSlice} from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { TodoState } from './todosState'
 
 const initialState: TodoState = {
-  todos: [{
-    id: '123',
-    title: '456',
-    completed: false
-  },
-  {
-    id: '1232',
-    title: '4562',
-    completed: true
-  }
+  todos: [
+    {
+      id: '123',
+      title: '456',
+      completed: false,
+    },
+    {
+      id: '1232',
+      title: '4562',
+      completed: true,
+    },
   ],
-  fieldForFilter: 'All'
+  fieldForFilter: 'All',
 }
 
 const todoSlice = createSlice({
   name: 'todos',
   initialState,
   reducers: {
-    addTodo(state, action){
+    addTodo(state, action) {
       state.todos.push({
         id: new Date().toISOString(),
         title: action.payload.title.trim(),
-        completed: false
+        completed: false,
       })
     },
-    removeTodo(state, action){
-      state.todos = state.todos.filter(todo => todo.id !== action.payload.id)
+    removeTodo(state, action) {
+      state.todos = state.todos.filter((todo) => todo.id !== action.payload.id)
     },
-    toggleTodo(state, action){
-      const toggledTodo = state.todos.find(todo => todo.id === action.payload.id)
+    toggleTodo(state, action) {
+      const toggledTodo = state.todos.find(
+        (todo) => todo.id === action.payload.id
+      )
       if (toggledTodo) toggledTodo.completed = !toggledTodo.completed
     },
-    toggleAllTodos(state){
-      const hasActiveTodo = state.todos.some(todo => todo.completed === false)
+    toggleAllTodos(state) {
+      const hasActiveTodo = state.todos.some((todo) => todo.completed === false)
       if (hasActiveTodo) {
-        state.todos.forEach(todo => todo.completed = true)
+        state.todos.forEach((todo) => (todo.completed = true))
       } else {
-        state.todos.forEach(todo => todo.completed = false)
+        state.todos.forEach((todo) => (todo.completed = false))
       }
     },
-    editTodo(state, action){
-      const editedTodo = state.todos.find(todo => todo.id === action.payload.id)
+    editTodo(state, action) {
+      const editedTodo = state.todos.find(
+        (todo) => todo.id === action.payload.id
+      )
       if (editedTodo) editedTodo.title = action.payload.title.trim()
     },
-    removeCompletedTodos(state){
-      state.todos = state.todos.filter(todo => todo.completed !== true)
+    removeCompletedTodos(state) {
+      state.todos = state.todos.filter((todo) => todo.completed !== true)
     },
-    changeFilter(state, action){
+    changeFilter(state, action) {
       state.fieldForFilter = action.payload.fieldForFilter
-    }
-  }
+    },
+  },
 })
 
-export const { addTodo, removeTodo, toggleTodo, toggleAllTodos, editTodo, removeCompletedTodos, changeFilter } = todoSlice.actions
+export const {
+  addTodo,
+  removeTodo,
+  toggleTodo,
+  toggleAllTodos,
+  editTodo,
+  removeCompletedTodos,
+  changeFilter,
+} = todoSlice.actions
 
 export default todoSlice.reducer

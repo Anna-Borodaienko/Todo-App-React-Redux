@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Todo } from "../../types/Todo";
+import React, { useEffect, useRef, useState } from 'react'
+import { Todo } from '../../types/Todo'
 import {
   StyledStatus,
   StyledLabel,
@@ -8,56 +8,56 @@ import {
   StyledTitle,
   StyledButton,
   Container,
-} from "./TodoCard.styled";
-import { useInput } from "../../hooks/useInput";
-import { useDispatch } from "react-redux";
-import { editTodo, removeTodo, toggleTodo } from "../../store/todoSlice";
+} from './TodoCard.styled'
+import { useInput } from '../../hooks/useInput'
+import { useDispatch } from 'react-redux'
+import { editTodo, removeTodo, toggleTodo } from '../../store/todoSlice'
 
 interface TodoCardProps {
-  todo: Todo;
+  todo: Todo
 }
 
 const TodoCard: React.FC<TodoCardProps> = ({ todo }: TodoCardProps) => {
-  const editTodoField = useRef<HTMLInputElement>(null);
-  const [isEditing, setIsEditing] = useState(false);
+  const editTodoField = useRef<HTMLInputElement>(null)
+  const [isEditing, setIsEditing] = useState(false)
 
-  const { value, onChange } = useInput(todo.title);
+  const { value, onChange } = useInput(todo.title)
 
-  const { id, title, completed } = todo;
+  const { id, title, completed } = todo
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   useEffect(() => {
     // focus the element with `ref={newTodoField}`
     if (editTodoField.current) {
-      editTodoField.current.focus();
+      editTodoField.current.focus()
     }
-  }, [isEditing]);
+  }, [isEditing])
 
   const handleEditing = (input: boolean): void => {
-    setIsEditing(input);
-  };
+    setIsEditing(input)
+  }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
-    event.preventDefault();
-    handleEditing(true);
-    if (value !== title && value !== "") {
-      dispatch(editTodo({ id, title: value }));
-      handleEditing(false);
-    } else if (value !== title && value === "") {
-      dispatch(removeTodo({ id }));
-      handleEditing(false);
+    event.preventDefault()
+    handleEditing(true)
+    if (value !== title && value !== '') {
+      dispatch(editTodo({ id, title: value }))
+      handleEditing(false)
+    } else if (value !== title && value === '') {
+      dispatch(removeTodo({ id }))
+      handleEditing(false)
     } else {
-      handleEditing(false);
+      handleEditing(false)
     }
-  };
+  }
 
   return (
-    <Wrapper data-cy="Todo">
+    <Wrapper data-cy='Todo'>
       <StyledLabel completed={completed}>
         <StyledStatus
-          data-cy="TodoStatus"
-          type="checkbox"
+          data-cy='TodoStatus'
+          type='checkbox'
           onClick={() => dispatch(toggleTodo({ id }))}
         />
       </StyledLabel>
@@ -65,15 +65,15 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }: TodoCardProps) => {
       {isEditing ? (
         <form onSubmit={handleSubmit} onBlur={handleSubmit}>
           <StyledInput
-            data-cy="NewTodoField"
+            data-cy='NewTodoField'
             ref={editTodoField}
-            type="text"
-            placeholder={value || "Empty todo will be deleted"}
+            type='text'
+            placeholder={value || 'Empty todo will be deleted'}
             value={value}
             onChange={onChange}
             onKeyDown={(event): void => {
-              if (event.key === "Escape") {
-                setIsEditing(false);
+              if (event.key === 'Escape') {
+                setIsEditing(false)
               }
             }}
           />
@@ -82,14 +82,14 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }: TodoCardProps) => {
         <Container>
           <StyledTitle
             completed={completed}
-            data-cy="TodoTitle"
+            data-cy='TodoTitle'
             onDoubleClick={(): void => setIsEditing(true)}
           >
             {title}
           </StyledTitle>
           <StyledButton
-            type="button"
-            data-cy="TodoDeleteButton"
+            type='button'
+            data-cy='TodoDeleteButton'
             onClick={() => dispatch(removeTodo({ id }))}
           >
             ×
@@ -97,7 +97,7 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }: TodoCardProps) => {
         </Container>
       )}
     </Wrapper>
-  );
-};
+  )
+}
 
-export default TodoCard;
+export default TodoCard

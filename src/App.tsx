@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react'
-import { AppWrapper, Title, Container, Header } from "./App.styled";
+import { AppWrapper, Title, Container, Header } from './App.styled'
 import TodoList from './components/TodoList'
 import { AddTodoInput } from './components/AddTodoInput'
-import ToggleAllButton from './components/ToggleAllButton';
-import { useSelector } from 'react-redux';
-import Footer from './components/Footer';
+import ToggleAllButton from './components/ToggleAllButton'
+import { useSelector } from 'react-redux'
+import Footer from './components/Footer'
 
 const App: React.FC = (): JSX.Element => {
   const { todos, fieldForFilter } = useSelector((state: any) => state.todos)
@@ -12,20 +12,18 @@ const App: React.FC = (): JSX.Element => {
   const filteredTodos = useMemo(() => {
     return todos.filter((todo: any) => {
       switch (fieldForFilter) {
-        case "Active":
-          return !todo.completed;
+        case 'Active':
+          return !todo.completed
 
-        case "Completed":
-          return todo.completed;
+        case 'Completed':
+          return todo.completed
 
-        case "All":
+        case 'All':
         default:
-          return true;
+          return true
       }
-    });
-  }, [todos, fieldForFilter]);
-
-  
+    })
+  }, [todos, fieldForFilter])
 
   return (
     <AppWrapper>
@@ -39,7 +37,7 @@ const App: React.FC = (): JSX.Element => {
         <Footer />
       </Container>
     </AppWrapper>
-  );
+  )
 }
 
 export default App

@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 import iconCompleted from '../../icons/completed.svg'
 import iconUncompleted from '../../icons/uncompleted.svg'
 
@@ -20,7 +20,7 @@ export const Wrapper = styled.div`
   font-size: 24px;
   line-height: 1.4em;
   border-bottom: 1px solid #ededed;
-  
+
   &:last-child {
     border-bottom: 0;
   }
@@ -28,10 +28,8 @@ export const Wrapper = styled.div`
 
 export const StyledLabel = styled.label<StyledLabelProps>`
   cursor: pointer;
-  background-image: ${(props): string => 
-    props.completed 
-      ? `url(${iconCompleted})` 
-      : `url(${iconUncompleted})`} ;
+  background-image: ${(props): string =>
+    props.completed ? `url(${iconCompleted})` : `url(${iconUncompleted})`};
   background-repeat: no-repeat;
   background-position: center left;
 `
@@ -52,14 +50,14 @@ export const StyledInput = styled.input`
 
   border: none;
   background: rgba(0, 0, 0, 0.01);
-  box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
+  box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);
 
   &::placeholder {
     font-style: italic;
     font-weight: 300;
     color: #e6e6e6;
   }
-  
+
   word-break: break-all;
   transition: color 0.4s;
 `
@@ -70,8 +68,8 @@ export const StyledTitle = styled.span<StyledTitleProps>`
 
   word-break: break-all;
   transition: color 0.4s;
-  color: ${props => props.completed ? '#d9d9d9' : 'inherit'}  ;
-  text-decoration: ${props => props.completed ? 'line-through' : 'none'} ;
+  color: ${(props) => (props.completed ? '#d9d9d9' : 'inherit')};
+  text-decoration: ${(props) => (props.completed ? 'line-through' : 'none')};
 `
 
 export const StyledButton = styled.button`

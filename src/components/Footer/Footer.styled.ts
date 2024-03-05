@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 interface StyledLinkProps {
-  selected: boolean,
+  selected: boolean
 }
 
 export const FooterWrapper = styled.div`
@@ -19,7 +19,8 @@ export const FooterWrapper = styled.div`
   text-align: center;
   border-top: 1px solid #e6e6e6;
 
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2),
+  box-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.2),
     0 8px 0 -3px #f6f6f6,
     0 9px 1px -3px rgba(0, 0, 0, 0.2),
     0 16px 0 -6px #f6f6f6,
@@ -38,12 +39,13 @@ export const StyledLink = styled.a<StyledLinkProps>`
   text-decoration: none;
 
   border: 1px solid;
-  border-color: ${props => props.selected ? 'rgba(175, 47, 47, 0.2)' : 'transparent'};
+  border-color: ${(props) =>
+    props.selected ? 'rgba(175, 47, 47, 0.2)' : 'transparent'};
   border-radius: 3px;
 
   &:hover {
-      border-color: rgba(175, 47, 47, 0.1);
-    }
+    border-color: rgba(175, 47, 47, 0.1);
+  }
 `
 
 export const ClearButton = styled.button`

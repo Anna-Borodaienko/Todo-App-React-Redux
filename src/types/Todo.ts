@@ -4,4 +4,4 @@ export interface Todo {
   completed: boolean
 }
 
-export type FieldForFilter = "All" | "Active" | "Completed"
+export type FieldForFilter = 'All' | 'Active' | 'Completed'
