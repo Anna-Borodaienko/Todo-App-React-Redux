@@ -38,30 +38,6 @@ export const StyledStatus = styled.input`
   opacity: 0;
 `
 
-export const StyledInput = styled.input`
-  width: 100%;
-  padding: 16px 16px 16px 16px;
-
-  font-size: 24px;
-  line-height: 1.4em;
-  font-family: inherit;
-  font-weight: inherit;
-  color: inherit;
-
-  border: none;
-  background: rgba(0, 0, 0, 0.01);
-  box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);
-
-  &::placeholder {
-    font-style: italic;
-    font-weight: 300;
-    color: #e6e6e6;
-  }
-
-  word-break: break-all;
-  transition: color 0.4s;
-`
-
 export const StyledTitle = styled.span<StyledTitleProps>`
   padding: 12px 15px;
   flex: 1;

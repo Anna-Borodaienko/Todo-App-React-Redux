@@ -1,1 +1,1 @@
-export const todoMaxLength = 20
+export const TODOMAXLENGTH = 20

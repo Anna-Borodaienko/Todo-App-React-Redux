@@ -1,37 +1,35 @@
 import React, { useState } from 'react'
-import { useInput } from '../../hooks/useInput'
 import { useDispatch } from 'react-redux'
 import { addTodo } from '../../store/todoSlice'
-import { InputWrapper, StyledError, FormWrapper } from './AddTodoInput.styled'
-import { todoMaxLength } from '../../constants/Todo'
+import { TODOMAXLENGTH } from '../../constants/Todo'
+import InputForm from '../InputForm'
 
 export const AddTodoInput: React.FC = (): JSX.Element => {
-  const { value, onChange, clearInput } = useInput('')
-  const [isError, setIsError] = useState(false)
+  const [value, setValue] = useState('')
 
   const dispatch = useDispatch()
 
-  const submitAddingTodo = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
-    if (value.trim().length <= todoMaxLength) {
-      setIsError(false)
+    if (value.trim().length <= TODOMAXLENGTH && value.trim() !== '') {
       dispatch(addTodo({ title: value }))
-      clearInput()
+      setValue('')
     } else {
-      setIsError(true)
+      setValue(value.trim())
     }
   }
 
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    event.preventDefault()
+    setValue(event.target.value)
+  }
+
   return (
-    <FormWrapper onSubmit={submitAddingTodo}>
-      <InputWrapper
-        data-cy='NewTodoField'
-        type='text'
-        placeholder='What needs to be done?'
-        value={value}
-        onChange={onChange}
-      />
-      {isError && <StyledError>Your Todo is too long</StyledError>}
-    </FormWrapper>
+    <InputForm
+      placeholder='What needs to be done?'
+      value={value}
+      handleSubmit={handleSubmit}
+      handleChange={onChange}
+    />
   )
 }

@@ -4,14 +4,13 @@ import {
   StyledStatus,
   StyledLabel,
   Wrapper,
-  StyledInput,
   StyledTitle,
   StyledButton,
   Container,
 } from './TodoCard.styled'
-import { useInput } from '../../hooks/useInput'
 import { useDispatch } from 'react-redux'
 import { editTodo, removeTodo, toggleTodo } from '../../store/todoSlice'
+import InputForm from '../InputForm'
 
 interface TodoCardProps {
   todo: Todo
@@ -21,9 +20,9 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }: TodoCardProps) => {
   const editTodoField = useRef<HTMLInputElement>(null)
   const [isEditing, setIsEditing] = useState(false)
 
-  const { value, onChange } = useInput(todo.title)
-
   const { id, title, completed } = todo
+
+  const [value, setValue] = useState(title)
 
   const dispatch = useDispatch()
 
@@ -34,22 +33,25 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }: TodoCardProps) => {
     }
   }, [isEditing])
 
-  const handleEditing = (input: boolean): void => {
-    setIsEditing(input)
-  }
-
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
-    handleEditing(true)
-    if (value !== title && value !== '') {
-      dispatch(editTodo({ id, title: value }))
-      handleEditing(false)
-    } else if (value !== title && value === '') {
+    const newTitle = value.trim()
+    if (!newTitle) {
       dispatch(removeTodo({ id }))
-      handleEditing(false)
-    } else {
-      handleEditing(false)
+      setIsEditing(false)
+      return
+    } else if (newTitle !== title) {
+      dispatch(editTodo({ id, title: value }))
+      setIsEditing(false)
+      return
     }
+    setValue(title)
+    setIsEditing(false)
+  }
+
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    event.preventDefault()
+    setValue(event.target.value)
   }
 
   return (
@@ -63,21 +65,13 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }: TodoCardProps) => {
       </StyledLabel>
 
       {isEditing ? 
-        <form onSubmit={handleSubmit} onBlur={handleSubmit}>
-          <StyledInput
-            data-cy='NewTodoField'
-            ref={editTodoField}
-            type='text'
-            placeholder={value || 'Empty todo will be deleted'}
-            value={value}
-            onChange={onChange}
-            onKeyDown={(event): void => {
-              if (event.key === 'Escape') {
-                setIsEditing(false)
-              }
-            }}
-          />
-        </form>
+        <InputForm
+          placeholder={value || 'Empty todo will be deleted'}
+          value={value}
+          handleSubmit={handleSubmit}
+          handleChange={onChange}
+          ref={editTodoField}
+        />
         : 
         <Container>
           <StyledTitle
