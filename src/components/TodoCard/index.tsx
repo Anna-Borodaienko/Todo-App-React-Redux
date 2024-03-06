@@ -38,7 +38,7 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }: TodoCardProps) => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
     const newTitle = value.trim()
-    
+
     if (!newTitle) {
       dispatch(removeTodo({ id }))
       setIsEditing(false)
@@ -70,7 +70,9 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }: TodoCardProps) => {
         <StyledStatus
           data-cy='TodoStatus'
           type='checkbox'
-          onClick={(): void => {dispatch(toggleTodo({ id }))}}
+          onClick={(): void => {
+            dispatch(toggleTodo({ id }))
+          }}
         />
       </StyledLabel>
 
@@ -94,7 +96,9 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }: TodoCardProps) => {
           <StyledButton
             type='button'
             data-cy='TodoDeleteButton'
-            onClick={(): void => {dispatch(removeTodo({ id }))}}
+            onClick={(): void => {
+              dispatch(removeTodo({ id }))
+            }}
           >
             ×
           </StyledButton>

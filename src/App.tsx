@@ -6,7 +6,6 @@ import ToggleAllButton from './components/ToggleAllButton'
 import Footer from './components/Footer'
 
 const App: React.FC = (): JSX.Element => {
-
   return (
     <AppWrapper>
       <Title>todos</Title>

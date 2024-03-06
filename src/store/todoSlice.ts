@@ -49,7 +49,7 @@ const todoSlice = createSlice({
   },
 })
 
-const { reducer} = todoSlice
+const { reducer } = todoSlice
 
 export const {
   addTodo,

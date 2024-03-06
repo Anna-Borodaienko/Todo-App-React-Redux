@@ -1,10 +1,6 @@
 import React, { useMemo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import {
-  ClearButton,
-  FooterWrapper,
-  StyledNav,
-} from './Footer.styled'
+import { ClearButton, FooterWrapper, StyledNav } from './Footer.styled'
 import { removeCompletedTodos } from '../../store/todoSlice'
 import { AppDispatch } from '../../store'
 import { Todo } from '../../types/Todo'

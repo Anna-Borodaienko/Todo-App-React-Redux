@@ -11,8 +11,12 @@ export const FormWrapper = styled.form<FormWrapperProps>`
   position: relative;
 
   &::after {
-    content: ${(props): string => props.$valueLength !== 0 ? `"${props.$valueLength} / ${props.$maxTodoLength}"` : ''};
-    color: ${(props): string => props.$valueLength > props.$maxTodoLength ? '#ff0000' : 'inherit'};
+    content: ${(props): string =>
+    props.$valueLength !== 0
+      ? `"${props.$valueLength} / ${props.$maxTodoLength}"`
+      : ''};
+    color: ${(props): string =>
+    props.$valueLength > props.$maxTodoLength ? '#ff0000' : 'inherit'};
     position: absolute;
     right: 0;
     bottom: 0;
