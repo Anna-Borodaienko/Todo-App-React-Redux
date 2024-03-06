@@ -11,6 +11,7 @@ import {
 import { useDispatch } from 'react-redux'
 import { editTodo, removeTodo, toggleTodo } from '../../store/todoSlice'
 import InputForm from '../InputForm'
+import { TODOMAXLENGTH } from '../../constants/Todo'
 
 interface TodoCardProps {
   todo: Todo
@@ -36,15 +37,23 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }: TodoCardProps) => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
     const newTitle = value.trim()
+    
     if (!newTitle) {
       dispatch(removeTodo({ id }))
       setIsEditing(false)
       return
-    } else if (newTitle !== title) {
+    }
+
+    if (newTitle !== title && newTitle.length <= TODOMAXLENGTH) {
       dispatch(editTodo({ id, title: value }))
       setIsEditing(false)
       return
     }
+
+    if (newTitle.length > TODOMAXLENGTH) {
+      return
+    }
+
     setValue(title)
     setIsEditing(false)
   }
