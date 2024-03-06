@@ -2,7 +2,7 @@
 
 The list of records
 
-[DEMO-LINK]() 
+[DEMO-LINK](https://delightful-flan-2b8127.netlify.app/) 
 
 ## Tech Stack
 
