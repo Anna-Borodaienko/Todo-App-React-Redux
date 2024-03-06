@@ -3,11 +3,12 @@ import { useDispatch } from 'react-redux'
 import { addTodo } from '../../store/todoSlice'
 import { TODOMAXLENGTH } from '../../constants/Todo'
 import InputForm from '../InputForm'
+import { AppDispatch } from '../../store'
 
 export const AddTodoInput: React.FC = (): JSX.Element => {
   const [value, setValue] = useState('')
 
-  const dispatch = useDispatch()
+  const dispatch: AppDispatch = useDispatch()
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()

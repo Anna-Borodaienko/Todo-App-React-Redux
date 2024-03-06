@@ -49,6 +49,8 @@ const todoSlice = createSlice({
   },
 })
 
+const { reducer} = todoSlice
+
 export const {
   addTodo,
   removeTodo,
@@ -59,4 +61,4 @@ export const {
   changeFilter,
 } = todoSlice.actions
 
-export default todoSlice.reducer
+export default reducer

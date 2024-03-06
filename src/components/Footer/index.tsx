@@ -7,13 +7,20 @@ import {
   StyledNav,
 } from './Footer.styled'
 import { changeFilter, removeCompletedTodos } from '../../store/todoSlice'
+import { AppDispatch, AppState } from '../../store'
+import { Todo } from '../../types/Todo'
 
 const Footer: React.FC = (): JSX.Element => {
-  const { todos, fieldForFilter } = useSelector((state: any) => state.todos)
-  const dispatch = useDispatch()
+  const { todos, fieldForFilter } = useSelector(
+    (state: AppState): { todos: Todo[], fieldForFilter: string } => ({
+      todos: state.todos,
+      fieldForFilter: state.fieldForFilter,
+    })
+  )
+  const dispatch: AppDispatch = useDispatch()
 
   const activeTodosNumber = useMemo(() => {
-    const completedTodos = todos.filter((todo: any) => todo.completed)
+    const completedTodos = todos.filter((todo: Todo) => todo.completed)
 
     return todos.length - completedTodos.length
   }, [todos])
@@ -27,7 +34,7 @@ const Footer: React.FC = (): JSX.Element => {
           data-cy='FilterLinkAll'
           href='#/'
           selected={fieldForFilter === 'All'}
-          onClick={() => dispatch(changeFilter({ fieldForFilter: 'All' }))}
+          onClick={(): void => {dispatch(changeFilter({ fieldForFilter: 'All' }))}}
         >
           All
         </StyledLink>
@@ -36,7 +43,7 @@ const Footer: React.FC = (): JSX.Element => {
           data-cy='FilterLinkActive'
           href='#/active'
           selected={fieldForFilter === 'Active'}
-          onClick={() => dispatch(changeFilter({ fieldForFilter: 'Active' }))}
+          onClick={(): void => {dispatch(changeFilter({ fieldForFilter: 'Active' }))}}
         >
           Active
         </StyledLink>
@@ -45,8 +52,8 @@ const Footer: React.FC = (): JSX.Element => {
           data-cy='FilterLinkCompleted'
           href='#/completed'
           selected={fieldForFilter === 'Completed'}
-          onClick={() =>
-            dispatch(changeFilter({ fieldForFilter: 'Completed' }))
+          onClick={(): void =>
+          {dispatch(changeFilter({ fieldForFilter: 'Completed' }))}
           }
         >
           Completed
@@ -58,7 +65,7 @@ const Footer: React.FC = (): JSX.Element => {
           data-cy='ClearCompletedButton'
           type='button'
           className='todoapp__clear-completed'
-          onClick={() => dispatch(removeCompletedTodos())}
+          onClick={(): void => {dispatch(removeCompletedTodos())}}
         >
           Clear completed
         </ClearButton>

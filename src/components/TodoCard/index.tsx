@@ -12,6 +12,7 @@ import { useDispatch } from 'react-redux'
 import { editTodo, removeTodo, toggleTodo } from '../../store/todoSlice'
 import InputForm from '../InputForm'
 import { TODOMAXLENGTH } from '../../constants/Todo'
+import { AppDispatch } from '../../store'
 
 interface TodoCardProps {
   todo: Todo
@@ -25,7 +26,7 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }: TodoCardProps) => {
 
   const [value, setValue] = useState(title)
 
-  const dispatch = useDispatch()
+  const dispatch: AppDispatch = useDispatch()
 
   useEffect(() => {
     // focus the element with `ref={newTodoField}`
@@ -69,7 +70,7 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }: TodoCardProps) => {
         <StyledStatus
           data-cy='TodoStatus'
           type='checkbox'
-          onClick={() => dispatch(toggleTodo({ id }))}
+          onClick={(): void => {dispatch(toggleTodo({ id }))}}
         />
       </StyledLabel>
 
@@ -93,7 +94,7 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }: TodoCardProps) => {
           <StyledButton
             type='button'
             data-cy='TodoDeleteButton'
-            onClick={() => dispatch(removeTodo({ id }))}
+            onClick={(): void => {dispatch(removeTodo({ id }))}}
           >
             ×
           </StyledButton>
