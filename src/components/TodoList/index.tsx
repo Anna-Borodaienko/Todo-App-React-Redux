@@ -8,8 +8,8 @@ import { AppState } from '../../store'
 const TodoList: React.FC = (): JSX.Element => {
   const { todos, fieldForFilter } = useSelector(
     (state: AppState): { todos: Todo[], fieldForFilter: string } => ({
-      todos: state.todos,
-      fieldForFilter: state.fieldForFilter,
+      todos: state.todos.todos,
+      fieldForFilter: state.todos.fieldForFilter,
     })
   )
 

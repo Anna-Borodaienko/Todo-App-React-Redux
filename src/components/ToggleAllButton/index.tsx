@@ -9,7 +9,7 @@ const ToggleAllButton: React.FC = (): JSX.Element => {
   const dispatch: AppDispatch = useDispatch()
   const { todos } = useSelector(
     (state: AppState): { todos: Todo[] } => ({
-      todos: state.todos,
+      todos: state.todos.todos,
     })
   )
 

@@ -13,8 +13,8 @@ import { Todo } from '../../types/Todo'
 const Footer: React.FC = (): JSX.Element => {
   const { todos, fieldForFilter } = useSelector(
     (state: AppState): { todos: Todo[], fieldForFilter: string } => ({
-      todos: state.todos,
-      fieldForFilter: state.fieldForFilter,
+      todos: state.todos.todos,
+      fieldForFilter: state.todos.fieldForFilter,
     })
   )
   const dispatch: AppDispatch = useDispatch()
