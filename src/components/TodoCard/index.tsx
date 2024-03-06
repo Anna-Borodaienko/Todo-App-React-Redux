@@ -66,7 +66,7 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }: TodoCardProps) => {
 
   return (
     <Wrapper data-cy='Todo'>
-      <StyledLabel completed={completed}>
+      <StyledLabel $completed={completed}>
         <StyledStatus
           data-cy='TodoStatus'
           type='checkbox'
@@ -85,7 +85,7 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }: TodoCardProps) => {
         : 
         <Container>
           <StyledTitle
-            completed={completed}
+            $completed={completed}
             data-cy='TodoTitle'
             onDoubleClick={(): void => setIsEditing(true)}
           >

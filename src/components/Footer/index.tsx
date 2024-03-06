@@ -7,16 +7,13 @@ import {
   StyledNav,
 } from './Footer.styled'
 import { changeFilter, removeCompletedTodos } from '../../store/todoSlice'
-import { AppDispatch, AppState } from '../../store'
+import { AppDispatch } from '../../store'
 import { Todo } from '../../types/Todo'
+import { selectActiveFilter, selectAllTodos } from '../../store/selectors'
 
 const Footer: React.FC = (): JSX.Element => {
-  const { todos, fieldForFilter } = useSelector(
-    (state: AppState): { todos: Todo[], fieldForFilter: string } => ({
-      todos: state.todos.todos,
-      fieldForFilter: state.todos.fieldForFilter,
-    })
-  )
+  const todos = useSelector(selectAllTodos)
+  const fieldForFilter = useSelector(selectActiveFilter)
   const dispatch: AppDispatch = useDispatch()
 
   const activeTodosNumber = useMemo(() => {
@@ -33,7 +30,7 @@ const Footer: React.FC = (): JSX.Element => {
         <StyledLink
           data-cy='FilterLinkAll'
           href='#/'
-          selected={fieldForFilter === 'All'}
+          $selected={fieldForFilter === 'All'}
           onClick={(): void => {dispatch(changeFilter({ fieldForFilter: 'All' }))}}
         >
           All
@@ -42,7 +39,7 @@ const Footer: React.FC = (): JSX.Element => {
         <StyledLink
           data-cy='FilterLinkActive'
           href='#/active'
-          selected={fieldForFilter === 'Active'}
+          $selected={fieldForFilter === 'Active'}
           onClick={(): void => {dispatch(changeFilter({ fieldForFilter: 'Active' }))}}
         >
           Active
@@ -51,7 +48,7 @@ const Footer: React.FC = (): JSX.Element => {
         <StyledLink
           data-cy='FilterLinkCompleted'
           href='#/completed'
-          selected={fieldForFilter === 'Completed'}
+          $selected={fieldForFilter === 'Completed'}
           onClick={(): void =>
           {dispatch(changeFilter({ fieldForFilter: 'Completed' }))}
           }

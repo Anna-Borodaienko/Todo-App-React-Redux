@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 interface StyledLinkProps {
-  selected: boolean
+  $selected: boolean
 }
 
 export const FooterWrapper = styled.div`
@@ -40,7 +40,7 @@ export const StyledLink = styled.a<StyledLinkProps>`
 
   border: 1px solid;
   border-color: ${(props): string =>
-    props.selected ? 'rgba(175, 47, 47, 0.2)' : 'transparent'};
+    props.$selected ? 'rgba(175, 47, 47, 0.2)' : 'transparent'};
   border-radius: 3px;
 
   &:hover {

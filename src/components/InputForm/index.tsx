@@ -19,8 +19,8 @@ const InputForm = React.forwardRef<HTMLInputElement, InputFormProps>(function In
     <FormWrapper
       onSubmit={handleSubmit}
       onBlur={handleSubmit}
-      valueLength={value.length}
-      maxTodoLength={TODOMAXLENGTH}
+      $valueLength={value.length}
+      $maxTodoLength={TODOMAXLENGTH}
     >
       <InputWrapper
         data-cy='NewTodoField'

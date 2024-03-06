@@ -3,15 +3,11 @@ import React, { useMemo } from 'react'
 import TodoCard from '../TodoCard'
 import { useSelector } from 'react-redux'
 import { Todo } from '../../types/Todo'
-import { AppState } from '../../store'
+import { selectActiveFilter, selectAllTodos } from '../../store/selectors'
 
 const TodoList: React.FC = (): JSX.Element => {
-  const { todos, fieldForFilter } = useSelector(
-    (state: AppState): { todos: Todo[], fieldForFilter: string } => ({
-      todos: state.todos.todos,
-      fieldForFilter: state.todos.fieldForFilter,
-    })
-  )
+  const todos = useSelector(selectAllTodos)
+  const fieldForFilter = useSelector(selectActiveFilter)
 
   const filteredTodos = useMemo(() => {
     return todos.filter((todo: Todo) => {
